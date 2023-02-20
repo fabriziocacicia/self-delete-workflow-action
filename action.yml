@@ -22,7 +22,7 @@ runs:
       shell: bash
       run: |
         rm '${{ steps.get_workflow_path.outputs.value }}'
-        ls ./github/workflows
+        ls .github/workflows
         
 
 
