@@ -22,6 +22,11 @@ runs:
       shell: bash
       run: |
         rm '${{ steps.get_workflow_path.outputs.value }}'
+    - name: Config git
+      shell: bash
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
     - name: Commit the changes to the current branch
       shell: bash
       run: |
