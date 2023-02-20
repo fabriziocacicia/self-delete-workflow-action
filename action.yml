@@ -13,5 +13,8 @@ runs:
       run: |
         IFS='@'
         read -a strarr <<< "$GITHUB_WORKFLOW_REF"
-        echo "${strarr[0]}" 
+        workflow_ref=${strarr[0]}
+        workflow_dir=${workflow_ref#"$GITHUB_REPOSITORY"}
+        
+        echo $workflow_dir
 
