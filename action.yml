@@ -1,5 +1,5 @@
-name: "Name of the Action"
-description: "Description of the Action"
+name: "Self Delete Workflow"
+description: "An action that deletes the workflow that launches it"
 author: "mail@fabriziocacicia.com"
 
 runs:
