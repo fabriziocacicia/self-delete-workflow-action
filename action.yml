@@ -11,5 +11,5 @@ runs:
     - name: Remove Workflow Folder
       shell: bash
       run: |
-        ls ./github
+        ls .github/
 
