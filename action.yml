@@ -11,5 +11,7 @@ runs:
     - name: Remove Workflow Folder
       shell: bash
       run: |
-        echo $GITHUB_WORKFLOW_REF
+        IFS='@'
+        read -a strarr <<< "$GITHUB_WORKFLOW_REF"
+        echo "${strarr[0]}" 
 
