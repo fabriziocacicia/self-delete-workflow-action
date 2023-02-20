@@ -21,7 +21,8 @@ runs:
     - name: Delete Workflow
       shell: bash
       run: |
-        wc -l '${{ steps.get_workflow_path.outputs.value }}'
+        rm '${{ steps.get_workflow_path.outputs.value }}'
+        ls ./github/workflows
         
 
 
