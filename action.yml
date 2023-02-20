@@ -9,12 +9,19 @@ runs:
       with:
         fetch-depth: 0
     - name: Get Workflow Path
+      id: get_workflow_path
       shell: bash
       run: |
         IFS='@'
         read -a strarr <<< "$GITHUB_WORKFLOW_REF"
         workflow_ref=${strarr[0]}
         workflow_path=${workflow_ref#"$GITHUB_REPOSITORY/"}
+        
+        echo "value=$workflow_path" >> $GITHUB_OUTPUT
+    - name: Delete Workflow
+      shell: bash
+      run: |
+        wc -l '${{ steps.get_workflow_path.outputs.value }}'
         
 
 
