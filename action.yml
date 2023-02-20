@@ -3,5 +3,13 @@ description: "An action that deletes the workflow that launches it"
 author: "mail@fabriziocacicia.com"
 
 runs:
-  using: "can be composite/docker/..."
-  ...
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Remove Workflow Folder
+      shell: bash
+      run: |
+        ls
+
