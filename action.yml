@@ -32,7 +32,11 @@ runs:
       run: |
         git add --all
         git commit -m "chore: remove the delete-tags-without-release workflow"
-        echo $GITHUB_REF_NAME
+    - name: Push changes to protected branch
+      uses: CasperWA/push-protected@v2
+      with:
+        token: ${{ github.token }}
+        branch: ${{ github.ref_name }}
         
 
 
