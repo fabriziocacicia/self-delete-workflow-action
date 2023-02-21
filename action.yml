@@ -27,6 +27,16 @@ runs:
       shell: bash
       run: |
         rm '${{ steps.get_workflow_path.outputs.value }}'
+    - name: Config git user
+      shell: bash
+      run: |
+        git config user.name "Self Delete Workflow Github Action"
+        git config user.email "<>"
+    - name: Commit the changes to the branch that triggered the workflow
+      shell: bash
+      run: |
+        git add --all
+        git commit -m "chore: remove the delete-tags-without-release workflow"
     - name: Push changes to the branch that triggered the workflow (even if its protected)
       uses: CasperWA/push-protected@v2
       with:
