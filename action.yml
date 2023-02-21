@@ -27,7 +27,7 @@ runs:
       run: |
         git config user.name "Self Delete Workflow Github Action"
         git config user.email "<>"
-    - name: Commit the changes to the branch that triggered the workflow
+    - name: Commit and push the changes to a new temporary branch
       shell: bash
       run: |
         git checkout -b self_delete
