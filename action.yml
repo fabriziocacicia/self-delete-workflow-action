@@ -2,11 +2,6 @@ name: "Self Delete Workflow"
 description: "An action that deletes the workflow that launches it"
 author: "mail@fabriziocacicia.com"
 
-inputs:
-  personal_access_token:
-    description: 'Personal Access Token for the repo.'
-    required: true
-
 runs:
   using: "composite"
   steps:
