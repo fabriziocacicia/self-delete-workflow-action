@@ -35,7 +35,7 @@ runs:
     - name: Push changes to the branch that triggered the workflow (even if its protected)
       uses: CasperWA/push-protected@v2
       with:
-        token: ${{ github.token }}
+        token: ${{ env.PERSONAL_ACCESS_TOEKN }}
         branch: ${{ github.ref_name }}
         
 
