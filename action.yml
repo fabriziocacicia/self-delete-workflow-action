@@ -30,10 +30,8 @@ runs:
     - name: Commit the changes to the current branch
       shell: bash
       run: |
-        git show
         git add --all
         git commit -m "chore: remove the delete-tags-without-release workflow"
-        git show
         
 
 
