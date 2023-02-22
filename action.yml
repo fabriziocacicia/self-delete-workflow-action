@@ -49,7 +49,7 @@ runs:
     - name: Push changes to the branch that triggered the workflow (even if its protected)
       shell: bash
       run: |
-        gh pr create --base ${{ github.ref_name }} --head self_delete --title "${{ steps.commit_message.outputs.value }}" --body "This Pull Request has been created by the **Push to Pull Request protected branch** Github Action"
+        gh pr create --base ${{ github.ref_name }} --head ${{ steps.temp_branch.outputs.value }} --title "${{ steps.commit_message.outputs.value }}" --body "This Pull Request has been created by the **Push to Pull Request protected branch** Github Action"
         gh pr merge --auto --delete-branch --squash
         
 
