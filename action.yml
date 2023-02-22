@@ -27,14 +27,19 @@ runs:
       run: |
         git config user.name "Self Delete Workflow Github Action"
         git config user.email "<>"
-    - name: Commit and push the changes to a new temporary branch
+    - name: Create and checkout a new temporary branch
+      id: temp_branch
       shell: bash
       run: |
         TEMP_BRANCH_NAME=self_delete_$GITHUB_SHA
         git checkout -b $TEMP_BRANCH_NAME
+        echo "value=$TEMP_BRANCH_NAME" >> $GITHUB_OUTPUT
+    - name: Commit and push the changes to the temporary branch
+      shell: bash
+      run: |
         git add --all
         git commit -m "chore: remove the ${{ steps.get_workflow_path.outputs.value }} workflow"
-        git push -u origin $TEMP_BRANCH_NAME
+        git push -u origin ${{ steps.temp_branch.outputs.value }}
     - name: Push changes to the branch that triggered the workflow (even if its protected)
       shell: bash
       run: |
