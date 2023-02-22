@@ -32,7 +32,7 @@ runs:
       run: |
         git checkout -b self_delete
         git add --all
-        git commit -m "chore: remove the delete-tags-without-release workflow"
+        git commit -m "chore: remove the ${{ steps.get_workflow_path.outputs.value }} workflow"
         git push -u origin self_delete
     - name: Push changes to the branch that triggered the workflow (even if its protected)
       shell: bash
