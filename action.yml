@@ -30,10 +30,11 @@ runs:
     - name: Commit and push the changes to a new temporary branch
       shell: bash
       run: |
-        git checkout -b self_delete
+        TEMP_BRANCH_NAME=self_delete_${{ GITHUB_SHA }}
+        git checkout -b $TEMP_BRANCH_NAME
         git add --all
         git commit -m "chore: remove the ${{ steps.get_workflow_path.outputs.value }} workflow"
-        git push -u origin self_delete
+        git push -u origin $TEMP_BRANCH_NAME
     - name: Push changes to the branch that triggered the workflow (even if its protected)
       shell: bash
       run: |
