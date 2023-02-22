@@ -34,16 +34,22 @@ runs:
         TEMP_BRANCH_NAME=self_delete_$GITHUB_SHA
         git checkout -b $TEMP_BRANCH_NAME
         echo "value=$TEMP_BRANCH_NAME" >> $GITHUB_OUTPUT
+    - name: Build the commit message
+      id: commit_message
+      shell: bash
+      run: |
+        COMMIT_MESSAGE="chore: remove the ${{ steps.get_workflow_path.outputs.value }} workflow"
+        echo "value=$COMMIT_MESSAGE" >> $GITHUB_OUTPUT
     - name: Commit and push the changes to the temporary branch
       shell: bash
       run: |
         git add --all
-        git commit -m "chore: remove the ${{ steps.get_workflow_path.outputs.value }} workflow"
+        git commit -m "${{ steps.commit_message.outputs.value }}"
         git push -u origin ${{ steps.temp_branch.outputs.value }}
     - name: Push changes to the branch that triggered the workflow (even if its protected)
       shell: bash
       run: |
-        gh pr create --base ${{ github.ref_name }} --head self_delete --title "chore: remove the delete-tags-without-release workflow" --body "This Pull Request has been created by the **Push to Pull Request protected branch** Github Action"
+        gh pr create --base ${{ github.ref_name }} --head self_delete --title "${{ steps.commit_message.outputs.value }}" --body "This Pull Request has been created by the **Push to Pull Request protected branch** Github Action"
         gh pr merge --auto --delete-branch --squash
         
 
