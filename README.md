@@ -9,11 +9,11 @@ It deletes the folder where the workflow is defined and commit the changes to th
 The action is able to make changes on protected branches. It push the changes to a temporary branch and then merge them with a Pull Request.
 
 ## Usage
-Add the action in your worklow as follows. You have to pass a Personal Access Token with the proper permissions to edit repositories and create and delete pull requests.
+Add the action in your worklow as follows.
 
 ```yaml
 - name: Self Delete Workflow
   uses: fabriziocacicia/self-delete-workflow-action@v0.1.0
     env:
-      GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
 ```
