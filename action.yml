@@ -23,9 +23,9 @@ runs:
       run: |
         rm '${{ steps.get_workflow_path.outputs.value }}'
     - name: Push Changes
-      uses: fabriziocacicia/commit-and-push-to-protected-branch-action@v0.1.0-draft
+      uses: fabriziocacicia/commit-and-push-to-protected-branch-action@v0.2.0-draft
       with:
         git_user_name: "Self Delete Workflow Github Action"
-        temp_branch: "self_delete_${{ github.run_id }}-${{ github.run_attempt }}"
+        temp_branch_prefix: "self_delete"
         commit_message: "chore: remove the ${{ steps.get_workflow_path.outputs.value }} workflow"
 
